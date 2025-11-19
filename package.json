@@ -1,0 +1,43 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "prepare": "git config core.hooksPath .git-hooks || echo 'Not in a git repo'",
+    "dev": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julianioorio/Calculator.git"
+  },
+  "author": "Julian Makey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Julianioorio/Calculator/issues"
+  },
+  "homepage": "https://github.com/Julianioorio/Calculator#readme",
+  "description": "Test task",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "html-webpack-plugin": "^5.6.5",
+    "prettier": "^3.6.2",
+    "sass": "^1.94.1",
+    "sass-loader": "^16.0.6",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack": "^5.103.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

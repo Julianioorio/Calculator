@@ -1,0 +1,19 @@
+#!/bin/sh
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|jsx|tsx)$')
+
+if [ -z "$FILES" ]; then
+  exit 0
+fi
+
+echo "Running ESLint..."
+for FILE in $FILES; do
+  npx eslint "$FILE" --fix || exit 1
+done
+
+echo "Running Prettier..."
+for FILE in $FILES; do
+  npx prettier --write "$FILE" || exit 1
+done
+
+git add $FILES

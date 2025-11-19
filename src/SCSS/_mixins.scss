@@ -1,0 +1,13 @@
+@mixin button($color: white){
+    border-radius: 50%;
+    background-color: #a6a6a6;
+    color: $color;
+    font-size: 45px;
+    width: 115px;
+    height: 115px;
+    min-height: 50px;
+    min-width: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+

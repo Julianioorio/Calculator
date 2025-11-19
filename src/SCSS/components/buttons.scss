@@ -1,0 +1,27 @@
+@use "../mixins" as mix;
+.buttons {
+  display: flex;
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    div {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 10px;
+      button {
+        @include mix.button(black);
+      }
+    }
+  }
+  div {
+    width: 365px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+    button {
+      @include mix.button(black);
+    }
+  }
+}
