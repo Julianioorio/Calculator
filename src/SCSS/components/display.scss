@@ -1,13 +1,26 @@
+@use '../components/calculator.scss' as let;
 .display {
     position: relative;
     height: 150px;
-    color: white;
     span {
         position: absolute;
         bottom: 20px;
         right: 20px;
         font-size: 60px;
-        color: white;
+        color: let.$light-cal-num;
+        font-family: 'Courier New', Courier, monospace;
+    }
+}
+
+html.dark .display {
+    position: relative;
+    height: 150px;
+    span {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 60px;
+        color: let.$dark-cal-num;
         font-family: 'Courier New', Courier, monospace;
     }
 }

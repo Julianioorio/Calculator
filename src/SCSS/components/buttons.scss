@@ -1,27 +1,194 @@
 @use "../mixins" as mix;
+@use '../components/calculator.scss' as let;
 .buttons {
   display: flex;
+  gap: 10px;
   & > div:first-child {
     display: flex;
     flex-direction: column;
-    color: white;
-    div {
+    flex-basis: 365px;
+    gap: 5px;
+    div:first-child {
       display: flex;
       justify-content: space-evenly;
       gap: 10px;
       button {
-        @include mix.button(black);
+        @include mix.button(let.$light-cal-numBas);
+      }
+      button:hover {
+        background-color: let.$light-btn-bas-hover;
+      }
+      button:active {
+        background-color: let.$light-btn-bas-active;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+    }
+    div:last-child {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      flex-basis: 365px;
+      gap: 10px;
+      button {
+        @include mix.numBtn();
+        
+      }
+      button:hover {
+        background-color: let.$light-btn-num-hover;
+      }
+      button:active {
+        background-color: let.$light-btn-num-active;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+      .zero {
+        flex-grow: 2;
+        border-radius: 60px;
       }
     }
   }
-  div {
-    width: 365px;
+  & > div:last-child {
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    gap: 5px;
     button {
-      @include mix.button(black);
+      font-size: 70px;
+      @include mix.mathBtn();
     }
   }
 }
+.activeLight {
+  @include mix.button(#ff9f0a);
+  background-color: white;
+}
+
+html.dark .buttons {
+  display: flex;
+  gap: 10px;
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 365px;
+    gap: 5px;
+    div:first-child {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 10px;
+      button {
+        @include mix.buttonDark(let.$dark-cal-numBas);
+      }
+      button:hover {
+        background-color: let.$dark-btn-bas-hover;
+      }
+      button:active {
+        background-color: let.$dark-btn-bas-active;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+    }
+    div:last-child {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      flex-basis: 365px;
+      gap: 10px;
+      button {
+        @include mix.numBtnDark();
+       
+      }
+      button:hover {
+        background-color: let.$dark-btn-num-hover;
+      }
+      button:active {
+        background-color: let.$dark-btn-num-active;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      }
+      .zero {
+        flex-grow: 2;
+        border-radius: 60px;
+      }
+    }
+  }
+  & > div:last-child {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    gap: 5px;
+    button {
+      font-size: 70px;
+      @include mix.mathBtnDark();
+     
+    }
+  }
+}
+.activeDark {
+  @include mix.buttonDark(#f1c40f);
+  background-color: white;
+}
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('https://i.ibb.co/FxzBYR9/night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

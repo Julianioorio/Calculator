@@ -1,13 +1,43 @@
-@mixin button($color: white){
+@use '../SCSS/components/calculator.scss' as let;
+@mixin button($color: let.$light-cal-num) {
     border-radius: 50%;
-    background-color: #a6a6a6;
+    background-color: let.$light-btn-basBtn;
     color: $color;
     font-size: 45px;
     width: 115px;
     height: 115px;
     min-height: 50px;
     min-width: 50px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+@mixin numBtn() {
+    @include button(let.$light-cal-num); 
+    background-color: let.$light-btn-num;
+}
+@mixin mathBtn() {
+    @include button(let.$light-cal-num); 
+    background-color: let.$light-btn-math;
+}
+//Dark
+@mixin buttonDark($color: let.$dark-cal-num) {
+    border-radius: 50%;
+    background-color: let.$dark-btn-basBtn;
+    color: $color;
+    font-size: 45px;
+    width: 115px;
+    height: 115px;
+    min-height: 50px;
+    min-width: 50px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@mixin numBtnDark() {
+    @include button(let.$dark-cal-num); 
+    background-color: let.$dark-btn-num;
+}
+@mixin mathBtnDark() {
+    @include button(let.$dark-cal-num); 
+    background-color: let.$dark-btn-math;
+}
 

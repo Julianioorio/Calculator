@@ -1,10 +1,37 @@
+@use "../SCSS/components/calculator.scss" as let;
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  transition:
+    background-color 1s ease-in-out,
+    color 1s ease-in-out;
+}
+
+.buttons,
+.buttons > div,
+.buttons button {
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.5s ease-in-out,
+    box-shadow 0.5s ease-in-out;
+}
 
 .wrapper {
+  transition:
+    background-color 1s ease-in-out,
+    color 1s ease-in-out;
+  background-color: let.$light-body-bg;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html.dark .wrapper {
+  background-color: let.$dark-body-bg;
   width: 100vw;
   height: 100vh;
   display: flex;
