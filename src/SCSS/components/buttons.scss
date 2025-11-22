@@ -1,5 +1,5 @@
 @use "../mixins" as mix;
-@use '../components/calculator.scss' as let;
+@use "../components/calculator.scss" as let;
 .buttons {
   display: flex;
   gap: 10px;
@@ -31,7 +31,6 @@
       gap: 10px;
       button {
         @include mix.numBtn();
-        
       }
       button:hover {
         background-color: let.$light-btn-num-hover;
@@ -52,15 +51,15 @@
     flex: 1;
     justify-content: space-between;
     gap: 5px;
+    .activeLight {
+      @include mix.button(#ff9f0a);
+      background-color: white;
+    }
     button {
       font-size: 70px;
       @include mix.mathBtn();
     }
   }
-}
-.activeLight {
-  @include mix.button(#ff9f0a);
-  background-color: white;
 }
 
 html.dark .buttons {
@@ -94,7 +93,6 @@ html.dark .buttons {
       gap: 10px;
       button {
         @include mix.numBtnDark();
-       
       }
       button:hover {
         background-color: let.$dark-btn-num-hover;
@@ -115,19 +113,16 @@ html.dark .buttons {
     flex: 1;
     justify-content: space-between;
     gap: 5px;
+    .activeDark {
+      @include mix.buttonDark(#f1c40f);
+      background-color: black;
+    }
     button {
       font-size: 70px;
       @include mix.mathBtnDark();
-     
     }
   }
 }
-.activeDark {
-  @include mix.buttonDark(#f1c40f);
-  background-color: white;
-}
-
-
 
 .switch {
   position: relative;
@@ -164,7 +159,7 @@ html.dark .buttons {
   margin: auto 0;
   transition: 0.4s;
   box-shadow: 0 0px 15px #2020203d;
-  background: white url('https://i.ibb.co/FxzBYR9/night.png');
+  background: white url("https://i.ibb.co/FxzBYR9/night.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -179,7 +174,7 @@ input:focus + .slider {
 
 input:checked + .slider:before {
   transform: translateX(24px);
-  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+  background: white url("https://i.ibb.co/7JfqXxB/sunny.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -191,4 +186,3 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-

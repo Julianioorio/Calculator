@@ -15,9 +15,7 @@ export default {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-
-  mode: "production",
-
+  mode: "development",
   module: {
     rules: [
       {
@@ -40,7 +38,7 @@ export default {
 
   devServer: {
     static: path.resolve(__dirname, "dist"),
-    port: 3000,
+    port: 4000,
     open: true,
     hot: true,
   },

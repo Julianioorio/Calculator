@@ -1,26 +1,36 @@
-@use '../components/calculator.scss' as let;
+@use "../components/calculator.scss" as let;
 .display {
-    position: relative;
-    height: 150px;
-    span {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        font-size: 60px;
-        color: let.$light-cal-num;
-        font-family: 'Courier New', Courier, monospace;
-    }
+  position: relative;
+  height: 150px;
+  span {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 35px;
+    color: let.$light-cal-num;
+    font-family: "Courier New", Courier, monospace;
+  }
+  #phantomNum {
+  position: absolute;
+  bottom: 20px;
+  top: 30px;
+  right: 20px;
+  font-size: 25px;
+  color: let.$light-btn-basBtn;
+  font-family: "Courier New", Courier, monospace;
+}
 }
 
+
 html.dark .display {
-    position: relative;
-    height: 150px;
-    span {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        font-size: 60px;
-        color: let.$dark-cal-num;
-        font-family: 'Courier New', Courier, monospace;
-    }
+  position: relative;
+  height: 150px;
+  span {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 35px;
+    color: let.$dark-cal-num;
+    font-family: "Courier New", Courier, monospace;
+  }
 }

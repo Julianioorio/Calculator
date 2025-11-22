@@ -1,6 +1,6 @@
+import "./JS/main.js";
 import _ from "lodash";
 import "./SCSS/main.scss";
-import "./JS/main.js";
 function component() {
   const element = document.createElement("div");
 

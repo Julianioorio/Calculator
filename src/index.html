@@ -8,14 +8,13 @@
   <body>
     <div class="wrapper">
       <div class="calculator">
-
         <label id="switch" class="switch">
             <input type="checkbox" id="slider">
             <span class="slider round"></span>
         </label>
-
         <div class="display">
-          <span>0</span>
+          <span id="phantomNum">0</span>
+          <span id="num">0</span>
         </div>
         <div class="buttons">
           <div>
@@ -38,7 +37,7 @@
               <button>,</button>
             </div>
           </div>
-          <div>
+          <div class="arith">
             <button>÷</button>
             <button>×</button>
             <button>−</button>
