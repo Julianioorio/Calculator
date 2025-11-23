@@ -56,3 +56,16 @@ html.dark .calculator {
   border-radius: 20px;
   padding: 5px;
 }
+
+@media (max-width: 600px) {
+  .calculator {
+    height: 520px;
+    width: 300px;
+    min-width: 290px;
+  }
+  html.dark .calculator {
+    height: 520px;
+    width: 300px;
+    min-width: 290px;
+  }
+}

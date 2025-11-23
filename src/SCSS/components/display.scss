@@ -34,3 +34,19 @@ html.dark .display {
     font-family: "Courier New", Courier, monospace;
   }
 }
+@media (max-width: 600px) {
+  .display #num {
+    font-size: 20px;
+  }
+  .display #phantomNum {
+    font-size: 10px;
+    top: 70px;
+  }
+  html.dark .display #num {
+    font-size: 20px;
+  }
+  html.dark .display #phantomNum {
+    font-size: 10px;
+    top: 70px;
+  }
+}

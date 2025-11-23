@@ -1,4 +1,5 @@
 import { state } from "./calc.js";
+import { resetPhantom } from "./phantomNum.js";
 
 export const value = document.getElementById("num");
 export const wrapper = document.querySelector(".wrapper");
@@ -18,16 +19,40 @@ export function formatResult(result) {
     const [i, d] = str.split(".");
     str = i + "," + d.slice(0, 2);
   }
-  if (str.replace(/[\s,]/g, "").length > 16) str = str.slice(0, 16);
+  if (str.replace(/[\s,]/g, "").length > 13) str = str.slice(0, 13); // max 13 цифр
   return str;
 }
 
 export function cangeValue(char) {
   let current = value.textContent;
-  if (state.flag && /^[0-9]$/.test(char)) {
-    current = char;
-    state.flag = false;
-  } else if (char === "Backspace") {
+
+  if (/^[0-9]$/.test(char)) {
+    if (state.afterEquals) {
+      document.getElementById("phantomNum").textContent = "0";
+      resetPhantom();
+      state.afterEquals = false;
+      state.flag = false;
+      current = char;
+      value.textContent = formatNumber(current);
+      return;
+    }
+
+    if (state.flag) {
+      current = char;
+      state.flag = false;
+    } else {
+      const clean = current.replace(/[\s,]/g, "");
+      if (clean.length >= 13) return;
+      current = current === "0" ? char : current + char;
+    }
+
+    value.textContent = formatNumber(current);
+    state.afterEquals = false;
+    return;
+  }
+
+  if (char === "Backspace") {
+    if (current === "Infinity") current = "0";
     document.getElementById("phantomNum").textContent = "0";
     current = current.slice(0, -1) || "0";
     if (state.flag) {
@@ -37,13 +62,15 @@ export function cangeValue(char) {
         .querySelectorAll(".arith button")
         .forEach((b) => b.classList.remove("activeLight", "activeDark"));
     }
-  } else if (/^[0-9,]$/.test(char)) {
-    const clean = current.replace(/[\s,]/g, "");
-    if (clean.length >= 13 && char !== ",") return;
-    if (char === "," && current.includes(",")) return;
-    current = current === "0" && char !== "," ? char : current + char;
-  } else return;
-  value.textContent = formatNumber(current);
+    value.textContent = formatNumber(current);
+    return;
+  }
+
+  if (char === ",") {
+    if (current.includes(",")) return;
+    current += ",";
+    value.textContent = formatNumber(current);
+  }
 }
 
 wrapper.addEventListener("click", (e) => {

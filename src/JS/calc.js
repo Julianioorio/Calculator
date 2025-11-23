@@ -12,6 +12,7 @@ export const state = {
   num2: undefined,
   operator: undefined,
   flag: false,
+  afterEquals: false,
 };
 
 const compute = (a, b, op) =>
@@ -49,9 +50,13 @@ document.querySelector(".wrapper").addEventListener("click", (e) => {
       const raw = compute(state.num1, current, state.operator);
       state.num1 = raw;
       value.textContent = formatNumber(formatResult(raw));
-    } else if (state.num1 === undefined) state.num1 = current;
+    } else if (state.num1 === undefined) {
+      state.num1 = current;
+    }
+
     state.operator = char;
     state.flag = true;
+    state.afterEquals = false;
     resetActive();
     setActive(btn);
     updatePhantomOnOperator();
@@ -60,7 +65,6 @@ document.querySelector(".wrapper").addEventListener("click", (e) => {
 
   if (char === "=" && state.operator) {
     if (!state.flag) state.num2 = current;
-
     if (state.num2 === undefined) return;
 
     if (state.flag) handleRepeatEquals();
@@ -69,6 +73,7 @@ document.querySelector(".wrapper").addEventListener("click", (e) => {
     state.num1 = raw;
     value.textContent = formatNumber(formatResult(raw));
     state.flag = true;
+    state.afterEquals = true;
     resetActive();
     updatePhantomOnEquals();
     return;

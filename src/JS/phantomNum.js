@@ -36,4 +36,5 @@ export function resetPhantom() {
   lastNum1 = lastNum2 = undefined;
   state.num1 = state.num2 = state.operator = undefined;
   state.flag = false;
+  state.afterEquals = false;
 }
