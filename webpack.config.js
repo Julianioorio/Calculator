@@ -12,7 +12,7 @@ export default {
 
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "root"),
     clean: true,
   },
   mode: "development",
@@ -37,7 +37,7 @@ export default {
   ],
 
   devServer: {
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "root"),
     port: 4000,
     open: true,
     hot: true,
