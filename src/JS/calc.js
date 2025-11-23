@@ -1,4 +1,10 @@
 import { value, formatNumber, formatResult } from "./num.js";
+import {
+  updatePhantomOnOperator,
+  updatePhantomOnEquals,
+  handleRepeatEquals,
+  resetPhantom,
+} from "./phantomNum.js";
 
 export const arrMath = ["÷", "×", "−", "+"];
 export const state = {
@@ -15,9 +21,9 @@ const compute = (a, b, op) =>
       ? a - b
       : op === "×"
         ? a * b
-        : op === "÷"
-          ? a / b
-          : b;
+        : b === 0
+          ? 0
+          : a / b;
 
 const resetActive = () =>
   document
@@ -41,38 +47,55 @@ document.querySelector(".wrapper").addEventListener("click", (e) => {
   if (arrMath.includes(char)) {
     if (state.operator && !state.flag) {
       const raw = compute(state.num1, current, state.operator);
-      const res = formatNumber(formatResult(raw));
-      value.textContent = res;
-      state.num1 = parseFloat(res.replace(/\s/g, "").replace(",", "."));
-    } else state.num1 = current;
-
+      state.num1 = raw;
+      value.textContent = formatNumber(formatResult(raw));
+    } else if (state.num1 === undefined) state.num1 = current;
     state.operator = char;
     state.flag = true;
     resetActive();
     setActive(btn);
+    updatePhantomOnOperator();
     return;
   }
 
   if (char === "=" && state.operator) {
-    const num2 = state.flag ? state.num2 : current;
-    state.num2 = num2;
-    const raw = compute(state.num1, num2, state.operator);
-    const res = formatNumber(formatResult(raw));
-    value.textContent = res;
-    state.num1 = parseFloat(res.replace(/\s/g, "").replace(",", "."));
+    if (!state.flag) state.num2 = current;
+
+    if (state.num2 === undefined) return;
+
+    if (state.flag) handleRepeatEquals();
+
+    const raw = compute(state.num1, state.num2, state.operator);
+    state.num1 = raw;
+    value.textContent = formatNumber(formatResult(raw));
     state.flag = true;
     resetActive();
+    updatePhantomOnEquals();
+    return;
+  }
+
+  if (char === "C") {
+    value.textContent = "0";
+    resetPhantom();
+    resetActive();
+    return;
   }
 });
 
 document.addEventListener("keydown", (e) => {
   const map = { "/": "÷", "*": "×", "-": "−", "+": "+", Enter: "=", "=": "=" };
-  if (!map[e.key] && !/^[0-9,]$/.test(e.key) && e.key !== "Backspace") return;
-  e.preventDefault();
-  const btn = map[e.key]
-    ? [...document.querySelectorAll(".wrapper button")].find(
-        (b) => b.textContent.trim() === map[e.key],
-      )
-    : null;
-  if (btn) btn.click();
+  if (
+    /^[0-9,]$/.test(e.key) ||
+    e.key === "Backspace" ||
+    map[e.key] ||
+    e.key === "C"
+  ) {
+    e.preventDefault();
+    const btn = map[e.key]
+      ? [...document.querySelectorAll(".wrapper button")].find(
+          (b) => b.textContent.trim() === map[e.key],
+        )
+      : null;
+    if (btn) btn.click();
+  }
 });

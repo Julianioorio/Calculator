@@ -10,4 +10,14 @@ slider.addEventListener("click", () => {
   const isDark = document.documentElement.classList.toggle("dark");
   localStorage.setItem("theme", isDark ? "dark" : "light");
   slider.checked = isDark;
+
+  document.querySelectorAll(".arith button").forEach((btn) => {
+    if (
+      btn.classList.contains("activeLight") ||
+      btn.classList.contains("activeDark")
+    ) {
+      btn.classList.toggle("activeLight");
+      btn.classList.toggle("activeDark");
+    }
+  });
 });

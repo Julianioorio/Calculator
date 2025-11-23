@@ -13,8 +13,7 @@ export function formatResult(result) {
   let str = String(result);
   if (str.includes("e")) {
     let [m, e] = str.split("e");
-    m = m.slice(0, 7);
-    str = m + "e" + e;
+    str = m.slice(0, 7) + "e" + e;
   } else if (str.includes(".")) {
     const [i, d] = str.split(".");
     str = i + "," + d.slice(0, 2);
@@ -25,21 +24,14 @@ export function formatResult(result) {
 
 export function cangeValue(char) {
   let current = value.textContent;
-
   if (state.flag && /^[0-9]$/.test(char)) {
     current = char;
     state.flag = false;
-    value.textContent = formatNumber(current);
-    return;
-  }
-
-  if (char === "Backspace") {
+  } else if (char === "Backspace") {
+    document.getElementById("phantomNum").textContent = "0";
     current = current.slice(0, -1) || "0";
-
     if (state.flag) {
-      state.num1 = undefined;
-      state.num2 = undefined;
-      state.operator = undefined;
+      state.num1 = state.num2 = state.operator = undefined;
       state.flag = false;
       document
         .querySelectorAll(".arith button")
@@ -47,11 +39,10 @@ export function cangeValue(char) {
     }
   } else if (/^[0-9,]$/.test(char)) {
     const clean = current.replace(/[\s,]/g, "");
-    if (clean.length >= 16 && char !== ",") return;
+    if (clean.length >= 13 && char !== ",") return;
     if (char === "," && current.includes(",")) return;
     current = current === "0" && char !== "," ? char : current + char;
   } else return;
-
   value.textContent = formatNumber(current);
 }
 
