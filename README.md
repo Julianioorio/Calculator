@@ -1,19 +1,61 @@
-# 🖩 Simple Calculator
+# Simple Calculator
 
 ## How to run the app
-1. **Clone the repository**:  
+1. **Clone the repository**: 
+
    `git clone https://github.com/Julianioorio/Calculator.git`
 2. **Go to the project directory**:  
+
    `cd Calculator`
 3. **Install dependencies**:  
+
    `npm install` or `yarn install` or `pnpm install`
+4. **Launch a project**: 
+
+   `npm run dev` 
+5. **build**:
+
+   `npm run build`
+
 
 ## Link to [Task](https://docs.google.com/document/d/1zpXXeSae-BlcxPKgw3DhxZA92cspVailrPYoaXSYrW8/edit?pli=1&tab=t.0)
 
 ### Project Structure
 
----
-
+```Calculator
+│── root/
+│── git/
+│── git-hooks/
+│ └── pre-commit hook
+│── node_modules/
+│── src/
+│ │── index.html
+│ │── index.js
+│ ├── Js
+│ │ ├── calc.js
+│ │ ├── main.js
+│ │ ├── num.js
+│ │ ├── otherCalc.js
+│ │ ├── phantomNum.js
+│ │ └── Theme
+│ │     └── themechenge.js
+│ │
+│ └── SCSS
+│ ├── _mixins.scss
+│ ├── main.scss
+│ ├── normolize.scss
+│ └── components
+│     ├── buttons.scss
+│     ├── calculator.scss
+│     └── display.scss
+│
+│── .gitignore
+│── eslint.config.mjs
+│── package-lock.json
+│── package.json
+│── README.md
+│── webpack.config.js
+```
 ## 1. Root Folders and Files
 
 1. **root/**  
@@ -46,14 +88,10 @@
 10. **README.md**  
     Project documentation.  
 
----
 
 ## 2. src Folder — Source Code
 
-1. **index.html**  
-   Main HTML file containing the calculator interface structure.  
-
-2. **Js Folder — JavaScript Logic**  
+1. **Js Folder — JavaScript Logic**  
    - **calc.js** — Core calculation logic.  
    - **main.js** — File that imports and connects all JavaScript modules.  
    - **num.js** — Handles numeric input.  
@@ -63,7 +101,7 @@
    #### Theme Subfolder
    - **themechenge.js** — Theme switching (light/dark mode).  
 
-3. **SCSS Folder — Styles**  
+2. **SCSS Folder — Styles**  
    - **_mixins.scss** — SCSS mixins.  
    - **main.scss** — File that imports all SCSS components.  
    - **normolize.scss** — CSS normalization.  
